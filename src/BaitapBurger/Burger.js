@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Burger() {
-  const burgerState = useSelector((state) => state.burgerReducer);
-  console.log(burgerState.burger.salad)
+  const { burger } = useSelector((state) => state.burgerReducer);
   return (
     <div>
+      <h4 className="text-center mb-4">Cửa hàng burger Cybersoft</h4>
       <div className="breadTop"></div>
-      <div>
-          {for(let i = 0, i< burgerState.burger.salad, i++){
-
-          }}
-        <div className="salad"></div>
-        <div className="cheese"></div>
-        <div className="beef"></div>
-      </div>
+      {Object.entries(burger).map(([foodName, amount]) => {
+        let food = [];
+        for (let i = 0; i < amount; i++) {
+          food.push(<div key={i} className={foodName}></div>);
+        }
+        return food;
+      })}
       <div className="breadBottom"></div>
     </div>
   );
